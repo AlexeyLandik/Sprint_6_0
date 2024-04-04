@@ -19,7 +19,6 @@ class BasePage:
         self.find_element_with_wait(locator).send_keys(text)
 
     def get_text_from_element(self, locator):
-        WebDriverWait(self.driver, 3).until(expected_conditions.visibility_of_element_located(locator))
         return self.find_element_with_wait(locator).text
 
     def format_locators(self, locator_1, num):
@@ -32,5 +31,5 @@ class BasePage:
 
     def switch_page(self, locator, num):
         self.driver.switch_to.window(self.driver.window_handles[num])
-        WebDriverWait(self.driver, 5).until(expected_conditions.visibility_of_element_located(locator))
+        self.find_element_with_wait(locator)
         return self.driver.current_url
